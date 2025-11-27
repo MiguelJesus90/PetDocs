@@ -37,7 +37,7 @@ Aplicación web para digitalizar y gestionar documentos de mascotas (vacunas, ce
 - **Frontend**: HTML5, CSS3, JavaScript (Vanilla)
 - **Backend**: PHP 7.4+
 - **Base de Datos**: MySQL
-- **Hosting**: 000WebHost (compatible)
+- **Hosting**: InfinityFree (gratuito)
 
 ## Estructura del Proyecto
 ```
@@ -55,20 +55,20 @@ PetDocs/
     └── schema.sql       # Esquema de la BD
 ```
 
-## Instalación en 000WebHost
+## Instalación en InfinityFree
 
 ### 1. Crear Base de Datos
-1. Accede al panel de control de 000WebHost
-2. Ve a "Database Manager" → "New Database"
+1. Accede al panel de control de InfinityFree
+2. Ve a "MySQL Databases" → "Create Database"
 3. Crea una base de datos (ej: `petdocs_db`)
 4. Anota las credenciales (nombre, usuario, contraseña, host)
 
 ### 2. Importar Esquema
-1. Abre phpMyAdmin desde el panel de 000WebHost
+1. Abre phpMyAdmin desde el panel de InfinityFree (botón "Manage" en MySQL Databases)
 2. Selecciona tu base de datos
 3. Ve a la pestaña "SQL"
 4. Copia y pega el contenido de `database/schema.sql`
-5. Haz clic en "Ejecutar"
+5. Haz clic en "Go" (Ejecutar)
 
 ### 3. Configurar Conexión
 
@@ -93,9 +93,9 @@ define('DB_PASS', 'tu_contraseña');    // Contraseña de la BD
 3. El archivo `config.php` está en `.gitignore` para proteger tus credenciales
 
 ### 4. Subir Archivos
-1. Usa el File Manager de 000WebHost o un cliente FTP
-2. Sube todo el contenido de la carpeta `public/` a `public_html/`
-3. Sube la carpeta `api/` al mismo nivel que `public_html/`
+1. Usa el File Manager de InfinityFree o un cliente FTP
+2. Sube todo el contenido de la carpeta `public/` a `htdocs/`
+3. Sube la carpeta `api/` al mismo nivel que `htdocs/`
 
 ### 5. Permisos
 Asegúrate de que la carpeta `public/uploads/` tenga permisos de escritura (777).
