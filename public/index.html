@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetDocs - Gestión de Documentos de Mascotas</title>
+    <meta name="description" content="Digitaliza y gestiona los documentos de tus mascotas">
+    <meta name="author" content="Miguel Jesús Arias Cañete">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container header-content">
+            <div>
+                <h1>🐾 PetDocs</h1>
+                <p class="developer-credit">Desarrollado por Miguel Jesús Arias Cañete</p>
+            </div>
+            <button class="btn btn-primary" onclick="openAddPetModal()">
+                ➕ Añadir Mascota
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="pets-container" class="pets-grid">
+            <!-- Pet cards will be inserted here by JavaScript -->
+        </div>
+
+        <div id="empty-state"
+            style="text-align: center; padding: 4rem 1rem; color: var(--text-secondary); display: none;">
+            <p style="font-size: 3rem; margin-bottom: 1rem;">🐶</p>
+            <h2>No tienes mascotas registradas</h2>
+            <p>Haz clic en "Añadir Mascota" para empezar</p>
+        </div>
+    </main>
+
+    <!-- Add/Edit Pet Modal -->
+    <div id="pet-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modal-title">Añadir Mascota</h2>
+                <button class="close-btn" onclick="closePetModal()">✕</button>
+            </div>
+            <form id="pet-form" onsubmit="savePet(event)">
+                <input type="hidden" id="pet-id">
+
+                <div class="form-group">
+                    <label for="pet-name">Nombre *</label>
+                    <input type="text" id="pet-name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="pet-species">Especie *</label>
+                    <select id="pet-species" required>
+                        <option value="">Selecciona...</option>
+                        <option value="Perro">Perro</option>
+                        <option value="Gato">Gato</option>
+                        <option value="Ave">Ave</option>
+                        <option value="Conejo">Conejo</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="pet-breed">Raza</label>
+                    <input type="text" id="pet-breed">
+                </div>
+
+                <div class="form-group">
+                    <label for="pet-birthdate">Fecha de Nacimiento</label>
+                    <input type="date" id="pet-birthdate">
+                </div>
+
+                <div class="form-group">
+                    <label for="pet-owner">Propietario *</label>
+                    <input type="text" id="pet-owner" required>
+                </div>
+
+                <div style="display: flex; gap: 1rem;">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">Guardar</button>
+                    <button type="button" class="btn btn-secondary" onclick="closePetModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Documents Modal -->
+    <div id="documents-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="documents-title">Documentos</h2>
+                <button class="close-btn" onclick="closeDocumentsModal()">✕</button>
+            </div>
+
+            <div class="form-group">
+                <label>Subir Documento</label>
+                <form id="upload-form" onsubmit="uploadDocument(event)">
+                    <input type="hidden" id="doc-pet-id">
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                        <select id="doc-type" style="flex: 1;">
+                            <option value="vacuna">Vacuna</option>
+                            <option value="certificado">Certificado</option>
+                            <option value="historial">Historial Médico</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                        <input type="file" id="doc-file" accept="image/*,application/pdf" required style="flex: 2;">
+                        <button type="submit" class="btn btn-primary">Subir</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="documents-list" class="documents-grid">
+                <!-- Documents will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Desarrollado por <span class="developer-name">Miguel Jesús Arias Cañete</span></p>
+            <p style="font-size: 0.875rem; margin-top: 0.5rem;">© 2025 PetDocs - Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>

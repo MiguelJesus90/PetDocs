@@ -1,0 +1,4 @@
+# Mantener esta carpeta en Git pero vacía
+# Los archivos subidos por usuarios no se commitean
+*
+!.gitkeep
