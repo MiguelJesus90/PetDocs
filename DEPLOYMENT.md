@@ -54,30 +54,20 @@ define('DB_PASS', 'tu_contraseña_aqui');           // La contraseña que elegis
 
 ## Paso 6: Subir Archivos
 
-### Opción A: File Manager (Recomendado para principiantes)
+### Opción A: Subida Rápida (Recomendado)
 
-1. En el panel de 000WebHost, ve a "Tools" → "File Manager"
-2. Verás una carpeta llamada `public_html`
-3. **Elimina** todos los archivos que vienen por defecto (index.php, etc.)
-4. Sube los archivos de la carpeta `public/` de tu proyecto:
-   - Arrastra `index.html` a `public_html/`
-   - Crea una carpeta `css` y sube `style.css`
-   - Crea una carpeta `js` y sube `app.js`
-   - Crea una carpeta `uploads` (vacía, para los documentos)
-5. **Importante**: Crea una carpeta `api` **fuera** de `public_html`:
-   - Haz clic en "Back" para salir de `public_html`
-   - Crea una carpeta llamada `api`
-   - Sube los archivos PHP (`config.php`, `pets.php`, `documents.php`)
+He preparado un archivo comprimido llamado `petdocs_deploy.zip` que contiene todo lo necesario con la estructura correcta.
 
-### Opción B: FTP (Para usuarios avanzados)
+1.  En el panel de 000WebHost/InfinityFree, ve a "Tools" → "File Manager".
+2.  Sube el archivo `petdocs_deploy.zip` a la carpeta raíz (`/`).
+3.  Haz clic derecho en el archivo zip y selecciona "Extract".
+4.  Asegúrate de extraerlo en la carpeta raíz (`/`).
+5.  Esto creará/actualizará las carpetas `api` y `htdocs` automáticamente.
 
-1. Descarga FileZilla o cualquier cliente FTP
-2. Usa estas credenciales (las encuentras en "Tools" → "FTP"):
-   - **Host**: `files.000webhost.com`
-   - **Username**: Tu nombre de usuario de 000WebHost
-   - **Password**: Tu contraseña de 000WebHost
-   - **Port**: 21
-3. Sube los archivos como se indica en la Opción A
+### Opción B: Manual (Si la opción A falla)
+
+1.  Sube el contenido de la carpeta `public/` dentro de `htdocs/`.
+2.  Sube la carpeta `api/` en la raíz (al mismo nivel que `htdocs`).
 
 ## Paso 7: Configurar Permisos
 
