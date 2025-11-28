@@ -4,7 +4,7 @@
  */
 
 // API Configuration
-const API_BASE = 'https://petdocs-miguel.lovestoblog.com/api/'; // InfinityFree URL
+const API_BASE = 'https://petdocs-miguel.lovestoblog.com/backend/'; // InfinityFree URL (Renamed from api to backend)
 
 // State
 let currentPetId = null;
@@ -287,8 +287,9 @@ async function deleteDocument(id) {
     }
 
     try {
-        const response = await fetch(`${API_BASE}documents.php`, {
-            method: 'DELETE',
+        // Use POST with action=delete to avoid DELETE method issues on free hosting
+        const response = await fetch(`${API_BASE}documents.php?action=delete&id=${id}`, {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
