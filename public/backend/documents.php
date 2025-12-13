@@ -80,9 +80,7 @@ function handlePost($pdo)
         sendResponse(['success' => false, 'message' => 'File too large. Max 5MB'], 400);
     }
 
-    // Create upload directory if it doesn't exist
-    // Use __DIR__ to get absolute path relative to this script
-    // Changed to '../uploads/' because index.html is at root (htdocs), so uploads should be at root too (htdocs/uploads)
+    // The upload directory should be relative to the public root, which is one level up from this script's directory.
     $uploadDir = __DIR__ . '/../uploads/';
 
     if (!file_exists($uploadDir)) {
