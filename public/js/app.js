@@ -4,7 +4,7 @@
  */
 
 // API Configuration
-const API_BASE = 'https://petdocs-miguel.lovestoblog.com/backend/'; // InfinityFree URL (Renamed from api to backend)
+const API_BASE = 'http://localhost:8080/backend/';
 
 // State
 let currentPetId = null;

@@ -1,7 +1,7 @@
 <?php
 /**
- * Database Configuration
- * Developed by Miguel Jesús Arias Cañete
+ * Database Configuration for SQLite
+ * Developed by Miguel Jesús Arias Cañete, adapted by Jules
  */
 
 // Enable error reporting for development
@@ -20,26 +20,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-// Database configuration
-// InfinityFree credentials
-define('DB_HOST', 'sql108.infinityfree.com');     // InfinityFree MySQL host
-define('DB_NAME', 'if0_40530495_petdocs_db');     // Your database name
-define('DB_USER', 'if0_40530495');                // Your database username
-define('DB_PASS', 'yTc4a2AkMlYyicJ');          // InfinityFree password
-define('DB_CHARSET', 'utf8mb4');
+// Database configuration for SQLite
+define('SQLITE_DB_PATH', __DIR__ . '/../../database/petdocs.sqlite');
 
 // Create PDO connection
 function getDBConnection()
 {
     try {
-        $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
+        $dsn = 'sqlite:' . SQLITE_DB_PATH;
         $options = [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            PDO::ATTR_EMULATE_PREPARES => false,
         ];
 
-        $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
+        $pdo = new PDO($dsn);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
+        // Enable foreign key constraints for SQLite
+        $pdo->exec('PRAGMA foreign_keys = ON;');
+
         return $pdo;
     } catch (PDOException $e) {
         http_response_code(500);
