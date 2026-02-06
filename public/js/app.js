@@ -125,10 +125,12 @@ async function savePet(event) {
     };
 
     try {
-        const url = `${API_BASE}pets.php`;
-        const method = id ? 'PUT' : 'POST';
+        let url = `${API_BASE}pets.php`;
+        let method = 'POST';
 
         if (id) {
+            // Use POST with action=put for updates
+            url += '?action=put';
             petData.id = id;
         }
 
@@ -162,8 +164,9 @@ async function deletePet(id) {
     }
 
     try {
-        const response = await fetch(`${API_BASE}pets.php`, {
-            method: 'DELETE',
+        // Use POST with action=delete to avoid DELETE method issues on free hosting
+        const response = await fetch(`${API_BASE}pets.php?action=delete`, {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
